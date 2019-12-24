@@ -16,7 +16,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  return { categories: state.categories };
+  return {
+    categories: state.categories,
+    activeCategoryID: state.activeCategoryID
+  };
 }
 
 class ConnectedList extends Component {
@@ -42,7 +45,7 @@ class ConnectedList extends Component {
   }
 
   render() {
-    const { categories } = this.props;
+    const { categories, activeCategoryID } = this.props;
     return (
       <div className="categoryList">
         {!categories.length ? (
@@ -52,13 +55,17 @@ class ConnectedList extends Component {
             {categories.map(category => (
               <div
                 key={category.id}
-                className="categoryGroup"
+                className={
+                  category.id === activeCategoryID
+                    ? "categoryGroupActive"
+                    : "categoryGroup"
+                }
                 onClick={this.handleActiveCategory(category)}
               >
                 {category.title}
                 <Button
                   type="button"
-                  onClick={this.toggleDeleteTodo(category)}
+                  // onClick={this.toggleDeleteTodo(category)}
                   className="deleteCategoryBtn"
                 >
                   delete

@@ -6,7 +6,9 @@ import {
   TOGGLE_TODO_STATUS,
   TOGGLE_MODAL_OPEN,
   TOGGLE_MODAL_CLOSE,
-  SET_ACTIVE_TODO
+  SET_ACTIVE_TODO,
+  CHANGE_ACTIVE_TITLE,
+  SAVE_EDITED_TITLE
 } from "../constants/action-types";
 
 const initialState = {
@@ -60,6 +62,27 @@ function rootReducer(state = initialState, action) {
         ...state,
         activeTodoID: action.payload.id,
         activeTodoTitle: action.payload.title
+      };
+    }
+    case CHANGE_ACTIVE_TITLE: {
+      return {
+        ...state,
+        activeTodoTitle: action.payload
+      };
+    }
+    case SAVE_EDITED_TITLE: {
+      const todos = state.todos.map(todo => {
+        if (todo.todoID !== state.activeTodoID) {
+          return todo;
+        }
+        return {
+          ...todo,
+          todoTitle: state.activeTodoTitle
+        };
+      });
+      return {
+        ...state,
+        todos
       };
     }
     case TOGGLE_MODAL_OPEN: {

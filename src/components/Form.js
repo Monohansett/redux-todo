@@ -45,7 +45,7 @@ class ConnectedForm extends Component {
           <Input
             type="text"
             id="title"
-            value={title}
+            value={title.trim()}
             onChange={this.handleChange}
             margin="dense"
             placeholder="Add category"

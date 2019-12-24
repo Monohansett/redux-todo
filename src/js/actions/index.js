@@ -6,7 +6,9 @@ import {
   TOGGLE_TODO_STATUS,
   TOGGLE_MODAL_OPEN,
   TOGGLE_MODAL_CLOSE,
-  SET_ACTIVE_TODO
+  SET_ACTIVE_TODO,
+  CHANGE_ACTIVE_TITLE,
+  SAVE_EDITED_TITLE
 } from "../constants/action-types";
 
 export function addCategory(payload) {
@@ -39,4 +41,12 @@ export function toggleModalClose() {
 
 export function setActiveTodo(payload) {
   return { type: SET_ACTIVE_TODO, payload };
+}
+
+export function changeActiveTitle(payload) {
+  return { type: CHANGE_ACTIVE_TITLE, payload };
+}
+
+export function saveEditedTitle(payload) {
+  return { type: SAVE_EDITED_TITLE, payload };
 }

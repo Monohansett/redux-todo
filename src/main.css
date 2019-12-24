@@ -40,6 +40,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background: transparent;
+}
+
+.categoryGroupActive{
+    background-color: #d5f0ff;
+    border: 1px solid transparent;
+    box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12);
+    display: block;
+    padding: 5px;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .categoryList {
@@ -71,15 +84,8 @@ input#todoTitle {
     margin-top: 50px;
 }
 
-.modalClosed {
-    display: none;
-}
-
-.modalOpened {
-    display: flex;
-}
-
 .modalOverlay {
+    display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;

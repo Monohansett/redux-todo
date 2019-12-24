@@ -48,6 +48,8 @@ class ConnectedAddTodoInput extends Component {
 
   render() {
     const { todoTitle } = this.state;
+    const { categoryID } = this.props;
+    const disabled = true;
     return (
       <form onSubmit={this.handleSubmit}>
         <ButtonGroup variant="contained" color="secondary">
@@ -58,9 +60,9 @@ class ConnectedAddTodoInput extends Component {
             onChange={this.handleChange}
             margin="dense"
             placeholder="Add To-Do"
-            required 
+            required
           ></Input>
-          <Button type="submit">
+          <Button type="submit" disabled={categoryID ? false : disabled}>
             ADD
           </Button>
         </ButtonGroup>
