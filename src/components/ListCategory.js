@@ -9,8 +9,8 @@ function mapDispatchToProps(dispatch) {
     deleteCategory: category => {
       dispatch(deleteCategory(category.id));
     },
-    setActiveCategory: category => {
-      dispatch(setActiveCategory(category.id));
+    setActiveCategory: id => {
+      dispatch(setActiveCategory(id));
     }
   };
 }
@@ -37,11 +37,12 @@ class ConnectedList extends Component {
     };
   }
 
-  handleActiveCategory(category) {
-    const { setActiveCategory } = this.props;
-    return function() {
-      setActiveCategory(category);
-    };
+  handleActiveCategory(id) {
+    // const { setActiveCategory } = this.props;
+    // return function() {
+    //   setActiveCategory(category);
+    // };
+    this.props.setActiveCategory(id);
   }
 
   render() {
@@ -53,24 +54,26 @@ class ConnectedList extends Component {
         ) : (
           <div>
             {categories.map(category => (
-              <div
-                key={category.id}
-                className={
-                  category.id === activeCategoryID
-                    ? "categoryGroupActive"
-                    : "categoryGroup"
-                }
-                onClick={this.handleActiveCategory(category)}
-              >
-                {category.title}
+              <>
+                <div
+                  key={category.id}
+                  className={
+                    category.id === activeCategoryID
+                      ? "categoryGroupActive"
+                      : "categoryGroup"
+                  }
+                  onClick={() => this.handleActiveCategory(category.id)}
+                >
+                  {category.title}
+                </div>
                 <Button
                   type="button"
-                  // onClick={this.toggleDeleteTodo(category)}
+                  onClick={this.toggleDeleteTodo(category)}
                   className="deleteCategoryBtn"
                 >
                   delete
                 </Button>
-              </div>
+              </>
             ))}
           </div>
         )}

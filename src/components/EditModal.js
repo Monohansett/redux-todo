@@ -37,12 +37,18 @@ const EditModal = ({
         <Input
           type="text"
           margin="dense"
-          placeholder="Enter new to-do title"
+          placeholder="Enter new todo title"
           required
           value={activeTodoTitle}
           onChange={e => changeActiveTitle(e.target.value)}
         ></Input>
-        <Button className="saveEditBtn" onClick={saveEditedTitle}>
+        <Button
+          className="saveEditBtn"
+          onClick={() => {
+            saveEditedTitle();
+            toggleModalClose();
+          }}
+        >
           Save
         </Button>
         <Button onClick={toggleModalClose}>Close</Button>
