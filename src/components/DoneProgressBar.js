@@ -22,10 +22,12 @@ class ConnectedDoneProgressBar extends Component {
     const doneTodos = todos.filter(todo => {
       return todo.categoryID === activeCategoryID && todo.isDone === true;
     });
-    console.log(currentTodos);
-    console.log(doneTodos);
-    this.progressBar.current.style.width =
-      (doneTodos.length / currentTodos.length) * 100 + "%";
+    if (!doneTodos.length) {
+      this.progressBar.current.style.width = 0 + "%";
+    } else {
+      this.progressBar.current.style.width =
+        (doneTodos.length / currentTodos.length) * 100 + "%";
+    }
   }
   render() {
     return (
