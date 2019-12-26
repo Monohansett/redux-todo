@@ -81,7 +81,7 @@ input#todoTitle {
     margin-top: 20px;
 }
 .MuiGrid-root.mainContainer.MuiGrid-container.MuiGrid-spacing-xs-3 {
-    margin-top: 50px;
+    margin-top: 10px;
 }
 
 .modalOverlay {
@@ -109,4 +109,21 @@ input#todoTitle {
 
 .editTodoHeadline {
     margin-bottom: 50px;
+}
+
+.progressBarWrapper {
+    display: flex;
+    /* justify-content: center; */
+    /* margin: 0 auto; */
+    /* max-width: 1280px; */
+    /* background: grey; */
+    width: 100%;
+    border: 1px solid grey;
+    border-radius: 25px;
+    height: 10px;
+    margin-top: 30px;
+}
+
+.progressBar {
+    background: grey;
 }

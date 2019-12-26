@@ -38,10 +38,6 @@ class ConnectedList extends Component {
   }
 
   handleActiveCategory(id) {
-    // const { setActiveCategory } = this.props;
-    // return function() {
-    //   setActiveCategory(category);
-    // };
     this.props.setActiveCategory(id);
   }
 

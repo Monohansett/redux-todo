@@ -7,11 +7,13 @@ import Form from "./Form";
 import Header from "./Header";
 import AddTodoInput from "./AddTodoInput";
 import ListTodos from "./ListTodos";
+import DoneProgressBar from "./DoneProgressBar";
 
 const App = () => (
   <>
     <Container>
       <Header></Header>
+      <DoneProgressBar></DoneProgressBar>
       <Grid container spacing={3} className="mainContainer">
         <Grid item lg={4}>
           <Form />

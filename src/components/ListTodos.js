@@ -69,6 +69,7 @@ class ConnectedListTodos extends Component {
                   <Checkbox
                     onClick={this.handleTodoStatus(todo)}
                     color="default"
+                    checked={todo.isDone}
                   ></Checkbox>
                   <Typography className="todoTitle">
                     {todo.todoTitle}
