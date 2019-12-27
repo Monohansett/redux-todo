@@ -10,8 +10,7 @@ import {
 const mapStateToProps = state => {
   return {
     isOpen: state.isOpenEditModal,
-    activeTodoID: state.activeTodoID,
-    activeTodoTitle: state.activeTodoTitle
+    activeEntityTitle: state.activeEntityTitle
   };
 };
 
@@ -25,7 +24,7 @@ const mapDispatchToProps = dispatch => {
 
 const EditModal = ({
   isOpen,
-  activeTodoTitle,
+  activeEntityTitle,
   toggleModalClose,
   changeActiveTitle,
   saveEditedTitle
@@ -39,7 +38,7 @@ const EditModal = ({
           margin="dense"
           placeholder="Enter new todo title"
           required
-          value={activeTodoTitle}
+          value={activeEntityTitle}
           onChange={e => changeActiveTitle(e.target.value)}
         ></Input>
         <Button

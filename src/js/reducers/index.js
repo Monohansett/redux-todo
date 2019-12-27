@@ -6,7 +6,7 @@ import {
   TOGGLE_TODO_STATUS,
   TOGGLE_MODAL_OPEN,
   TOGGLE_MODAL_CLOSE,
-  SET_ACTIVE_TODO,
+  SET_EDITABLE_ENTITY,
   CHANGE_ACTIVE_TITLE,
   SAVE_EDITED_TITLE
 } from "../constants/action-types";
@@ -16,8 +16,8 @@ const initialState = {
   activeCategoryID: null,
   categories: [],
   isOpenEditModal: false,
-  activeTodoID: null,
-  activeTodoTitle: ""
+  activeEntityID: null,
+  activeEntityTitle: ""
 };
 
 function rootReducer(state = initialState, action) {
@@ -57,32 +57,52 @@ function rootReducer(state = initialState, action) {
       });
       return { ...state, todos };
     }
-    case SET_ACTIVE_TODO: {
-      return {
-        ...state,
-        activeTodoID: action.payload.id,
-        activeTodoTitle: action.payload.title
-      };
+    case SET_EDITABLE_ENTITY: {
+      if (action.payload.categoryID) {
+        return {
+          ...state,
+          activeEntityID: action.payload.categoryID,
+          activeEntityTitle: action.payload.categoryTitle
+        };
+      } else {
+        return {
+          ...state,
+          activeEntityID: action.payload.id,
+          activeEntityTitle: action.payload.title
+        };
+      }
     }
     case CHANGE_ACTIVE_TITLE: {
+      // console.log(action.payload);
       return {
         ...state,
-        activeTodoTitle: action.payload
+        activeEntityTitle: action.payload
       };
     }
     case SAVE_EDITED_TITLE: {
+      // console.log(action.payload);
       const todos = state.todos.map(todo => {
-        if (todo.todoID !== state.activeTodoID) {
+        if (todo.todoID !== state.activeEntityID) {
           return todo;
         }
         return {
           ...todo,
-          todoTitle: state.activeTodoTitle
+          todoTitle: state.activeEntityTitle
+        };
+      });
+      const categories = state.categories.map(category => {
+        if (category.id !== state.activeEntityID) {
+          return category;
+        }
+        return {
+          ...category,
+          title: state.activeEntityTitle
         };
       });
       return {
         ...state,
-        todos
+        todos,
+        categories
       };
     }
     case TOGGLE_MODAL_OPEN: {

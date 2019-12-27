@@ -5,14 +5,14 @@ import { Checkbox, Box, Button, Typography } from "@material-ui/core";
 import {
   toggleTodoStatus,
   toggleModalOpen,
-  setActiveTodo
+  setEditableEntity
 } from "../js/actions/index";
 
 function mapDispatchToProps(dispatch) {
   return {
     toggleTodoStatus: todo => dispatch(toggleTodoStatus(todo)),
     toggleModalOpen: () => dispatch(toggleModalOpen()),
-    setActiveTodo: (id, title) => dispatch(setActiveTodo(id, title))
+    setEditableEntity: (id, title) => dispatch(setEditableEntity(id, title))
   };
 }
 
@@ -39,7 +39,7 @@ class ConnectedListTodos extends Component {
   }
 
   handleActiveTodo(id, title) {
-    this.props.setActiveTodo({ id, title });
+    this.props.setEditableEntity({ id, title });
   }
   render() {
     const { activeCategoryID, todos } = this.props;

@@ -11,7 +11,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-class ConnectedForm extends Component {
+class ConnectedAddCategoryInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -59,6 +59,6 @@ class ConnectedForm extends Component {
   }
 }
 
-const Form = connect(null, mapDispatchToProps)(ConnectedForm);
+const AddCategoryInput = connect(null, mapDispatchToProps)(ConnectedAddCategoryInput);
 
-export default Form;
+export default AddCategoryInput;

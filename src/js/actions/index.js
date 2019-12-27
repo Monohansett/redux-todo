@@ -6,9 +6,9 @@ import {
   TOGGLE_TODO_STATUS,
   TOGGLE_MODAL_OPEN,
   TOGGLE_MODAL_CLOSE,
-  SET_ACTIVE_TODO,
+  SET_EDITABLE_ENTITY,
   CHANGE_ACTIVE_TITLE,
-  SAVE_EDITED_TITLE
+  SAVE_EDITED_TITLE,
 } from "../constants/action-types";
 
 export function addCategory(payload) {
@@ -39,8 +39,8 @@ export function toggleModalClose() {
   return { type: TOGGLE_MODAL_CLOSE };
 }
 
-export function setActiveTodo(payload) {
-  return { type: SET_ACTIVE_TODO, payload };
+export function setEditableEntity(payload) {
+  return { type: SET_EDITABLE_ENTITY, payload };
 }
 
 export function changeActiveTitle(payload) {

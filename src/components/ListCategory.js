@@ -1,8 +1,13 @@
 import React, { Component } from "react";
-import { Button } from "@material-ui/core";
 import { connect } from "react-redux";
-import { deleteCategory } from "../js/actions/index";
-import { setActiveCategory } from "../js/actions/index";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import {
+  deleteCategory,
+  setActiveCategory,
+  setEditableEntity,
+  toggleModalOpen
+} from "../js/actions/index";
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -11,7 +16,11 @@ function mapDispatchToProps(dispatch) {
     },
     setActiveCategory: id => {
       dispatch(setActiveCategory(id));
-    }
+    },
+    setEditableEntity: (id, title) => {
+      dispatch(setEditableEntity(id, title));
+    },
+    toggleModalOpen: () => dispatch(toggleModalOpen())
   };
 }
 
@@ -28,6 +37,8 @@ class ConnectedList extends Component {
 
     this.toggleDeleteTodo = this.toggleDeleteTodo.bind(this);
     this.handleActiveCategory = this.handleActiveCategory.bind(this);
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleEditableEntity = this.handleEditableEntity.bind(this);
   }
 
   toggleDeleteTodo(category) {
@@ -37,8 +48,16 @@ class ConnectedList extends Component {
     };
   }
 
+  handleOpenModal() {
+    this.props.toggleModalOpen();
+  }
+
   handleActiveCategory(id) {
     this.props.setActiveCategory(id);
+  }
+
+  handleEditableEntity(categoryID, categoryTitle) {
+    this.props.setEditableEntity({ categoryID, categoryTitle });
   }
 
   render() {
@@ -50,9 +69,8 @@ class ConnectedList extends Component {
         ) : (
           <div>
             {categories.map(category => (
-              <>
+              <div key={category.id}>
                 <div
-                  key={category.id}
                   className={
                     category.id === activeCategoryID
                       ? "categoryGroupActive"
@@ -62,14 +80,19 @@ class ConnectedList extends Component {
                 >
                   {category.title}
                 </div>
-                <Button
-                  type="button"
-                  onClick={this.toggleDeleteTodo(category)}
-                  className="deleteCategoryBtn"
-                >
-                  delete
-                </Button>
-              </>
+                <div className="deleteCategoryBtn">
+                  <DeleteIcon
+                    type="button"
+                    onClick={this.toggleDeleteTodo(category)}
+                  />
+                  <EditIcon
+                    onClick={() => {
+                      this.handleEditableEntity(category.id, category.title);
+                      this.handleOpenModal();
+                    }}
+                  ></EditIcon>
+                </div>
+              </div>
             ))}
           </div>
         )}
