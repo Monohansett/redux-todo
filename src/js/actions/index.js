@@ -9,6 +9,8 @@ import {
   SET_EDITABLE_ENTITY,
   CHANGE_ACTIVE_TITLE,
   SAVE_EDITED_TITLE,
+  SAVE_SEARCH_VALUE,
+  SHOW_DONE
 } from "../constants/action-types";
 
 export function addCategory(payload) {
@@ -49,4 +51,12 @@ export function changeActiveTitle(payload) {
 
 export function saveEditedTitle(payload) {
   return { type: SAVE_EDITED_TITLE, payload };
+}
+
+export function saveSearchValue(payload) {
+  return { type: SAVE_SEARCH_VALUE, payload };
+}
+
+export function showDone() {
+  return { type: SHOW_DONE };
 }

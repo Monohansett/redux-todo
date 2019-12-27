@@ -8,7 +8,9 @@ import {
   TOGGLE_MODAL_CLOSE,
   SET_EDITABLE_ENTITY,
   CHANGE_ACTIVE_TITLE,
-  SAVE_EDITED_TITLE
+  SAVE_EDITED_TITLE,
+  SAVE_SEARCH_VALUE,
+  SHOW_DONE
 } from "../constants/action-types";
 
 const initialState = {
@@ -17,7 +19,9 @@ const initialState = {
   categories: [],
   isOpenEditModal: false,
   activeEntityID: null,
-  activeEntityTitle: ""
+  activeEntityTitle: "",
+  searchValue: "",
+  showDone: false
 };
 
 function rootReducer(state = initialState, action) {
@@ -73,14 +77,12 @@ function rootReducer(state = initialState, action) {
       }
     }
     case CHANGE_ACTIVE_TITLE: {
-      // console.log(action.payload);
       return {
         ...state,
         activeEntityTitle: action.payload
       };
     }
     case SAVE_EDITED_TITLE: {
-      // console.log(action.payload);
       const todos = state.todos.map(todo => {
         if (todo.todoID !== state.activeEntityID) {
           return todo;
@@ -103,6 +105,19 @@ function rootReducer(state = initialState, action) {
         ...state,
         todos,
         categories
+      };
+    }
+    case SAVE_SEARCH_VALUE: {
+      return {
+        ...state,
+        searchValue: action.payload
+      };
+    }
+    case SHOW_DONE: {
+      const showDone = state.showDone;
+      return {
+        ...state,
+        showDone: !showDone
       };
     }
     case TOGGLE_MODAL_OPEN: {
